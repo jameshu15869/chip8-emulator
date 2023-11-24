@@ -1,6 +1,6 @@
 # CHIP-8 Emulator 🕹️
 
-This project attempts to emulate a [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8) system using idiomatic C++. This project follows the specifications from [Cowgod](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM). The graphics were created with SDL 2.
+This project attempts to emulate a [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8) system using idiomatic C++. This project follows the specifications from [Cowgod](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM). The graphics were created with [SDL 2](https://www.libsdl.org/). Tests were created with [GoogleTest](http://google.github.io/googletest/). 
 
 ## Examples
 
