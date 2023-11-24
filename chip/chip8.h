@@ -75,8 +75,8 @@ private:
 
   inline void init_table0() {
     std::fill(table0.begin(), table0.end(), &CHIP8::OP_NULL);
-    table[0x0] = &CHIP8::OP_00E0;
-    table[0xe] = &CHIP8::OP_00EE;
+    table0[0x0] = &CHIP8::OP_00E0;
+    table0[0xe] = &CHIP8::OP_00EE;
   }
 
   inline void init_table8() {
@@ -145,7 +145,7 @@ public:
   BYTE sound_timer;
   WORD opcode;
 
-  std::array<std::array<uint32_t, 32>, 64> screen;
+  std::array<std::array<uint32_t, 64>, 32> screen;
 
   //  Keypad       Keyboard
   // +-+-+-+-+    +-+-+-+-+

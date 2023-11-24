@@ -25,6 +25,7 @@ TEST_F(CHIP8Test, TestRegistersInit) {
 }
 
 TEST_F(CHIP8Test, TestOP_00E0) {
+  chip.opcode = 0x00e0;
   chip.OP_00E0();
   for (int y = 0; y < 32; y++) {
     for (int x = 0; x < 64; x++) {
@@ -36,12 +37,14 @@ TEST_F(CHIP8Test, TestOP_00E0) {
 
 TEST_F(CHIP8Test, TestOP_00EE) {
   chip.stack.push_back(0x200);
+  chip.opcode = 0x00ee;
   chip.OP_00EE();
   ASSERT_EQ(chip.program_counter, 0x200);
 
   chip.stack.push_back(0x200);
   chip.stack.push_back(0x400);
   chip.program_counter = 0x200;
+  chip.opcode = 0x00ee;
   chip.OP_00EE();
   ASSERT_EQ(chip.program_counter, 0x400);
   ASSERT_EQ(chip.stack.back(), 0x200);
@@ -513,55 +516,55 @@ TEST_F(CHIP8Test, TestOP_FX29) {
 }
 
 TEST_F(CHIP8Test, TestOP_FX33) {
-    chip.registers[5] = 123;
-    chip.opcode = 0xf533;
-    chip.address_i = 0x250;
+  chip.registers[5] = 123;
+  chip.opcode = 0xf533;
+  chip.address_i = 0x250;
 
-    chip.OP_FX33();
-    ASSERT_EQ(chip.memory[chip.address_i], 1);
-    ASSERT_EQ(chip.memory[chip.address_i + 1], 2);
-    ASSERT_EQ(chip.memory[chip.address_i + 2], 3);
+  chip.OP_FX33();
+  ASSERT_EQ(chip.memory[chip.address_i], 1);
+  ASSERT_EQ(chip.memory[chip.address_i + 1], 2);
+  ASSERT_EQ(chip.memory[chip.address_i + 2], 3);
 }
 
 TEST_F(CHIP8Test, TestOP_FX55) {
-    chip.registers[0] = 0x12;
-    chip.registers[1] = 0x34;
-    chip.registers[2] = 0x56;
-    chip.registers[3] = 0x78;
-    chip.registers[4] = 0x90;
-    chip.registers[5] = 0x12;
-    chip.address_i = 0x250;
-    chip.memory[chip.address_i + 6] = 0xff;
-    chip.opcode = 0xf555;
+  chip.registers[0] = 0x12;
+  chip.registers[1] = 0x34;
+  chip.registers[2] = 0x56;
+  chip.registers[3] = 0x78;
+  chip.registers[4] = 0x90;
+  chip.registers[5] = 0x12;
+  chip.address_i = 0x250;
+  chip.memory[chip.address_i + 6] = 0xff;
+  chip.opcode = 0xf555;
 
-    chip.OP_FX55();
-    ASSERT_EQ(chip.memory[chip.address_i], 0x12);
-    ASSERT_EQ(chip.memory[chip.address_i + 1], 0x34);
-    ASSERT_EQ(chip.memory[chip.address_i + 2], 0x56);
-    ASSERT_EQ(chip.memory[chip.address_i + 3], 0x78);
-    ASSERT_EQ(chip.memory[chip.address_i + 4], 0x90);
-    ASSERT_EQ(chip.memory[chip.address_i + 5], 0x12);
-    ASSERT_EQ(chip.memory[chip.address_i + 6], 0xff);
+  chip.OP_FX55();
+  ASSERT_EQ(chip.memory[chip.address_i], 0x12);
+  ASSERT_EQ(chip.memory[chip.address_i + 1], 0x34);
+  ASSERT_EQ(chip.memory[chip.address_i + 2], 0x56);
+  ASSERT_EQ(chip.memory[chip.address_i + 3], 0x78);
+  ASSERT_EQ(chip.memory[chip.address_i + 4], 0x90);
+  ASSERT_EQ(chip.memory[chip.address_i + 5], 0x12);
+  ASSERT_EQ(chip.memory[chip.address_i + 6], 0xff);
 }
 
 TEST_F(CHIP8Test, TestOP_FX65) {
-    chip.address_i = 0x250;
-    chip.memory[chip.address_i] = 0x12;
-    chip.memory[chip.address_i + 1] = 0x34;
-    chip.memory[chip.address_i + 2] = 0x56;
-    chip.memory[chip.address_i + 3] = 0x78;
-    chip.memory[chip.address_i + 4] = 0x90;
-    chip.memory[chip.address_i + 5] = 0x01;
-    chip.memory[chip.address_i + 6] = 0x99;
-    chip.registers[6] = 0xff;
-    chip.opcode = 0xf565;
+  chip.address_i = 0x250;
+  chip.memory[chip.address_i] = 0x12;
+  chip.memory[chip.address_i + 1] = 0x34;
+  chip.memory[chip.address_i + 2] = 0x56;
+  chip.memory[chip.address_i + 3] = 0x78;
+  chip.memory[chip.address_i + 4] = 0x90;
+  chip.memory[chip.address_i + 5] = 0x01;
+  chip.memory[chip.address_i + 6] = 0x99;
+  chip.registers[6] = 0xff;
+  chip.opcode = 0xf565;
 
-    chip.OP_FX65();
-    ASSERT_EQ(chip.registers[0], 0x12);
-    ASSERT_EQ(chip.registers[1], 0x34);
-    ASSERT_EQ(chip.registers[2], 0x56);
-    ASSERT_EQ(chip.registers[3], 0x78);
-    ASSERT_EQ(chip.registers[4], 0x90);
-    ASSERT_EQ(chip.registers[5], 0x01);
-    ASSERT_EQ(chip.registers[6], 0xff);
+  chip.OP_FX65();
+  ASSERT_EQ(chip.registers[0], 0x12);
+  ASSERT_EQ(chip.registers[1], 0x34);
+  ASSERT_EQ(chip.registers[2], 0x56);
+  ASSERT_EQ(chip.registers[3], 0x78);
+  ASSERT_EQ(chip.registers[4], 0x90);
+  ASSERT_EQ(chip.registers[5], 0x01);
+  ASSERT_EQ(chip.registers[6], 0xff);
 }

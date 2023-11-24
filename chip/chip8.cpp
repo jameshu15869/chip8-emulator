@@ -11,7 +11,7 @@ void CHIP8::reset() {
 }
 
 void CHIP8::reset_screen() {
-  opcode = 0x00e0;
+  // opcode = 0x00e0;
   for (auto &row : screen) {
     std::fill(row.begin(), row.end(), 0);
   }
