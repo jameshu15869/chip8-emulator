@@ -39,7 +39,8 @@ void CHIP8::cycle() {
   program_counter += 2; // go to the next instruction
   opcode = ret;
 
-  uint8_t leftmost_bit = opcode >> 12; // 4 (right half of left byte) + 8 (right byte)
+  uint8_t leftmost_bit =
+      opcode >> 12; // 4 (right half of left byte) + 8 (right byte)
   // execute the opcode
   (this->*table[leftmost_bit])();
 
@@ -193,10 +194,7 @@ void CHIP8::OP_8XY7() {
   } else {
     registers[0xf] = 0;
   }
-  // std::cout << "HI: " << val_y - val_x << std::endl;
-  // std::cout << "hi: " << (unsigned int)(val_y - val_x) << std::endl;
   registers[reg_x_index] = (BYTE)(val_y - val_x);
-  // std::cout << (int)registers[reg_x_index] << std::endl;
 }
 
 void CHIP8::OP_8XYE() {

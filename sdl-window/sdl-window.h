@@ -76,15 +76,6 @@ public:
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, texture, nullptr, nullptr);
     SDL_RenderPresent(renderer);
-
-    // SDL_Event e;
-    // bool quit = false;
-    // while (quit == false) {
-    //   while (SDL_PollEvent(&e)) {
-    //     if (e.type == SDL_QUIT)
-    //       quit = true;
-    //   }
-    // }
   }
 
   template <std::size_t Size>

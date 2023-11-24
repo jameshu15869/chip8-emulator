@@ -422,8 +422,6 @@ TEST_F(CHIP8Test, TestOP_DXYN) {
       screen_pixel = chip.screen[y][x];
       sprite_pixel = fontset[y + 5] & (0b10000000 >> x);
       sprite_pixel >>= (8 - x - 1);
-      //   std::cout << "Screen: " << (int) screen_pixel << " sprite: " << (int)
-      //   sprite_pixel << std::endl;
       if (sprite_pixel) {
         ASSERT_EQ(screen_pixel, 0);
       }
