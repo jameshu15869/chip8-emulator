@@ -41,6 +41,9 @@ ctest
 
 ## Credits
 https://austinmorlan.com/posts/chip8_emulator/: Learning resource
+
 https://tobiasvl.github.io/blog/write-a-chip-8-emulator/: Learning resource
+
 https://github.com/corax89/chip8-test-rom/blob/master/README.md: opcode_test.ch8
+
 https://github.com/dmatlack/chip8/tree/master/roms: Remaining ROMs (Credits are listed in the repo)
